@@ -1,27 +1,31 @@
 <?php
     ob_start();
 ?>
-<h2>Список книг</h2>
-
-
+<h2>Список сериалов</h2>
 
 <?php
 if (!empty($bookList)) {
     foreach ($bookList as $bookOne) {
         echo '<article>';
+        echo '<div class="book-cover-container">'; 
+        echo '<img src="' . htmlspecialchars($bookOne['poster']) . '" alt="' . htmlspecialchars($bookOne['poster']) . '" class="book-cover">';
+        echo '</div>';  
+
+        echo '<div class="book-info">'; 
         echo '<h3>';
-        echo '<a href="book?title='.$bookOne['BOOKNAME'].'">'.$bookOne['BOOKNAME'].'</a>';
+        echo '<a href="show?title=' . htmlspecialchars($bookOne['name']) . '">' . htmlspecialchars($bookOne['name']) . '</a>';
         echo '</h3>';
-        echo '<img src="'.$bookOne['IMAGE_URL'].'">';
-        echo '<p>Author(s): '.$bookOne['AUTHOR'].'</p>';
-        echo '<p>Price: '.$bookOne['PRICE'].'$</p>';
+        echo '<p>Жанры: ' . htmlspecialchars($bookOne['genre']) . '</p>';
+        echo '<p>Год: ' . htmlspecialchars($bookOne['year']) . '</p>';
         echo '<p style="padding-top:10px;">';
-        echo '<a href="book?title='.$bookOne['BOOKNAME'].'" role="button"> Содержание &raquo;</a>';
+        echo '<a href="show?name=' . htmlspecialchars($bookOne['name']) . '" role="button">Содержание &raquo;</a>';
+        echo '</p>';
+        echo '</div>';  
         echo '</article>';
         echo '<div style="clear:both;"></div>';
     }
 } else {
-    echo '<p>Нет доступных книг.</p>';
+    echo '<p>Нет доступных сериалов.</p>';
 }
 ?>
 

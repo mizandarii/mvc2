@@ -10,27 +10,24 @@ class Controller {
         include 'view/main.php';
     }
 
+    private $model;
+
+    public function __construct() {
+        // Создаем объект модели, передавая параметры подключения к базе данных
+        $this->model = new Model('localhost', 'tvshows', 'root', '');
+    }
+
+    // Метод для отображения списка книг
     public function BookList() {
-        // $booksList = Model::getBookList();
-
-        $model = new Model('localhost', 'root', '', 'mvc2');
-        $bookList = $model->GetBookList();
-        include 'view/bookList.php';
-
+        $bookList = $this->model->getBookList(); // Получаем список книг через модель
+        include 'view/bookList.php'; // Подключаем шаблон с отображением списка
     }
 
-public function bookOne($title) {
-    //$test = Model::getBook($title);
-    $model = new Model('localhost', 'root', '', 'mvc2');
-    $test = $model->GetBook($title);
-    if ($test[0] == true){
-        $book = $test[1];
-        include 'view/bookOne.php';
-    } 
-    else {
-        include 'view/error404.php';
+    // Метод для отображения детальной информации по книге
+    public function BookDetail($name) {
+        $book = $this->model->getBookByName($name); // Получаем информацию о книге по ID
+        include 'view/bookDetail.php'; // Подключаем шаблон с отображением информации
     }
-}
 public function error404() {
     include 'view/error404.php';
 }

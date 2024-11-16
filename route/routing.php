@@ -7,25 +7,23 @@
     $contoller = new Controller();
 
     if ($way == '' || $way == 'index.php') {
-        //$response = Controller::StartSite(); 
         $response = $contoller->StartSite(); 
     }
-    elseif ($way == 'books') {
-        //$response = Controller::BookList(); 
-
-        
+    elseif ($way == 'shows') {
         $response = $contoller->BookList();
     }
-    elseif ($way == 'book') {  
-        if (isset($_GET['title'])) {
-            $title = $_GET['title'];
+    elseif ($way == 'show') {  
+        if (isset($_GET['name'])) {
+            $name = $_GET['name'];  
         }
-        //$response = Controller::BookOne($title); 
-        $response = $contoller->BookOne($title);
-         
+
+        if (isset($name)) {  
+            $response = $contoller->BookDetail($name);  
+        } else {
+            $response = $contoller->error404();
+        }
     }
     else {
-        //$response = Controller::error404();  
         $response = $contoller->error404();
     }
 ?>

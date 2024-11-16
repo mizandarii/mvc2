@@ -8,13 +8,13 @@
 <body>
     <div class="container">
         <div class="header clearfix">
-    <h2>Книжный магазин</h2>
+    <h2>База Сериалов</h2>
         <h4 class="text-muted">
             <?php
 
                 echo '<a href="./">Главная</a> &#187';
-                echo '<a href="books">Книги</a>';
-                if (!empty($book['BOOKNAME'])) echo ' &#187'.$book['BOOKNAME'];
+                echo '<a href="shows">Сериалы</a>';
+                if (!empty($book['name'])) echo ' &#187'.$book['name'];
             ?>
         </h4>
     </div>
